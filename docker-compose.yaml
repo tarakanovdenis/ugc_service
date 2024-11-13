@@ -1,0 +1,439 @@
+services:
+  django_admin_panel_backend:
+    container_name: django_admin_panel_backend
+    hostname: django_admin_panel_backend
+    build:
+      context: ./admin_panel/
+    env_file:
+      - ./admin_panel/.env
+    volumes:
+      - ./admin_panel/:/opt/app/
+    ports:
+      - "8001:8000"
+    networks:
+      - appnet
+    depends_on:
+      django_admin_panel_db:
+        condition: service_healthy
+
+  django_admin_panel_db:
+    container_name: django_admin_panel_db
+    hostname: django_admin_panel_db
+    image: postgres:15.7
+    env_file:
+      - ./async_api/.env
+    volumes:
+      - $HOME/django_admin_panel_db/data:/var/lib/postgresql/data
+      - ./admin_panel/etl/sqlite_to_postgres/movies_database.ddl:/movies_database.ddl:ro
+    expose:
+      - "5432:5432"
+    networks:
+      - appnet
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+    restart: on-failure
+
+  swagger:
+    container_name: swagger
+    image: swaggerapi/swagger-ui:latest
+    ports:
+      - "8085:8080"
+    volumes:
+      - ./admin_panel/openapi.yaml:/swagger.yaml
+    environment:
+      - SWAGGER_JSON=/swagger.yaml
+    networks:
+      - appnet
+
+  async_api_backend:
+    container_name: async_api_backend
+    hostname: async_api_backend
+    build:
+      context: ./async_api/
+    env_file:
+      - ./async_api/.env
+    volumes:
+      - ./async_api/:/opt/app/
+    ports:
+      - "8002:8000"
+    networks:
+      - appnet
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+
+  redis:
+    container_name: redis
+    hostname: redis
+    image: redis:latest
+    volumes:
+      - redis-data:/var/lib/redis
+      - redis.conf:/usr/local/etc/redis/redis.conf
+    ports:
+      - 6379:6379
+    networks:
+      - appnet
+
+  elasticsearch:
+    container_name: elasticsearch
+    hostname: elasticsearch
+    image: elasticsearch:8.6.2
+    env_file:
+      - ./async_api/.env
+    ports:
+      - 9200:9200
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    healthcheck:
+      test: ["CMD", "curl", "-s", "-f", "http://elasticsearch:9200/_cat/health"]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    networks:
+      - appnet
+    depends_on:
+      - redis
+
+  etl_from_postgres_to_es:
+    container_name: etl_from_postgres_to_es
+    build:
+      context: ./async_api/etl/
+    restart: always
+    env_file:
+      - ./async_api/.env
+      - ./async_api/.env
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+      django_admin_panel_db:
+        condition: service_started
+    volumes:
+      - ./async_api/etl/:/opt/app/
+    networks:
+      - appnet
+    command: bash start_etl.sh
+
+  kafka:
+    container_name: kafka
+    image: bitnami/kafka:3.4
+    ports:
+      - 9094:9094
+    environment:
+      - KAFKA_ENABLE_KRAFT=yes
+      - KAFKA_CFG_PROCESS_ROLES=broker,controller
+      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_CFG_NODE_ID=0
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka:9093
+      - KAFKA_KRAFT_CLUSTER_ID=abcdefghijklmnopqrstuv
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093,EXTERNAL://:9094
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092,EXTERNAL://127.0.0.1:9094
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,EXTERNAL:PLAINTEXT,PLAINTEXT:PLAINTEXT
+    healthcheck:
+      test: kafka-topics.sh --list --bootstrap-server kafka:9092 || exit 1
+      interval: 5s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+    networks:
+      - appnet
+    volumes:
+      - kafka_data:/bitnami/kafka
+
+  ui:
+    container_name: kafka_ui
+    image: provectuslabs/kafka-ui:v0.7.0
+    ports:
+      - "8080:8080"
+    environment:
+      - KAFKA_CLUSTERS_0_BOOTSTRAP_SERVERS=kafka:9092
+      - KAFKA_CLUSTERS_0_NAME=kraft
+    networks:
+      - appnet
+
+  zookeeper:
+    image: zookeeper:3.8
+    container_name: zookeeper
+    hostname: zookeeper
+    networks:
+      - appnet
+
+  auth_backend:
+    container_name: auth_backend
+    hostname: auth_backend
+    build:
+      context: ./auth
+    env_file:
+      - ./auth/.env
+    volumes:
+      - ./auth/:/opt/app
+    ports:
+      - 8000:8000
+    networks:
+      - appnet
+    depends_on:
+      auth_db:
+        condition: service_started
+      redis:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
+
+  auth_db:
+    container_name: auth_db
+    hostname: auth_db
+    image: postgres:15.7
+    env_file:
+      - ./auth/.env
+    volumes:
+      - $HOME/auth_db/data:/var/lib/postgresql/data
+      - ./auth/alembic/create_partition_table_login_histories.ddl:/create_partition_table_login_histories.ddl:ro
+    expose:
+      - "5433:5432"
+    networks:
+      - appnet
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+    restart: on-failure
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    hostname: rabbitmq
+    ports:
+      - 15672:15672
+      - 5672:5672
+    environment:
+      - RABBITMQ_DEFAULT_USER=username
+      - RABBITMQ_DEFAULT_PASS=password
+    networks:
+      - appnet
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+    restart: on-failure
+
+  notification_service_backend:
+    container_name: notification_service_backend
+    build:
+      context: ./notification_service
+    env_file:
+      - ./notification_service/.env
+    volumes:
+      - ./notification_service/:/opt/app
+    ports:
+      - 8003:8000
+    networks:
+      - appnet
+    restart: on-failure
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+
+  clickhouse:
+    image: clickhouse/clickhouse-server:23
+    container_name: clickhouse
+    hostname: clickhouse
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+    volumes:
+      - ./ugc_flask/data/node1:/etc/clickhouse-server
+    networks:
+      - appnet
+
+  etl_from_kafka_to_clickhouse:
+    container_name: etl_from_kafka_to_clickhouse
+    build:
+      context: ./ugc_flask/etl/
+    restart: on-failure
+    env_file:
+      - ./ugc_flask/etl/.env
+    depends_on:
+      kafka:
+        condition: service_healthy
+      clickhouse:
+        condition: service_started
+    volumes:
+      - ./ugc_flask/etl/:/opt/app/
+    networks:
+      - appnet
+
+  backend_for_ugc_fastapi:
+    container_name: backend_for_ugc_fastapi
+    build:
+      context: ./ugc_fastapi
+    env_file:
+      - ./ugc_fastapi/.env
+    volumes:
+      - ./ugc_fastapi/:/opt/app
+    ports:
+      - 8004:8000
+    networks:
+      - appnet
+    restart: on-failure
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    hostname: mongodb
+    ports:
+      - 27017:27017
+    restart: unless-stopped
+    networks:
+      - appnet
+
+  elasticsearch_elk:
+    container_name: elasticsearch_elk
+    hostname: elasticsearch_elk
+    image: elasticsearch:8.10.2
+    volumes:
+      - elasticsearch-elk-data:/usr/share/elasticsearch/data
+    networks:
+      - appnet
+    env_file:
+      - ./elk/.env
+    ports:
+      - 9201:9200
+    healthcheck:
+      test: ["CMD", "curl", "-s", "-f", "http://elasticsearch_elk:9200/_cat/health"]
+      interval: 3s
+      timeout: 3s
+      retries: 5
+      start_period: 20s
+
+  logstash:
+    image: logstash:8.10.2
+    container_name: logstash
+    hostname: logstash
+    volumes:
+      - ./elk/config/logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro
+      - ./ugc_fastapi/logs/:/var/log/app/
+      # - ./nginx/logs/:/var/log/nginx/:ro
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    environment:
+      - XPACK_MONITORING_ENABLED=false
+      - ES_HOST='elasticsearch:9200'
+    ports:
+      - '5044:5044/udp'
+    networks:
+      - appnet
+
+  kibana:
+    image: kibana:8.10.2
+    container_name: kibana
+    ports:
+      - "5601:5601"
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    networks:
+      - appnet
+
+  filebeat:
+    image: elastic/filebeat:8.10.2
+    container_name: filebeat
+    volumes:
+      - ./nginx/logs/:/var/log/nginx:ro
+      - ./deploy/filebeat.yml:/usr/share/filebeat/filebeat.yml
+    depends_on:
+      elasticsearch_elk:
+        condition: service_healthy
+      nginx:
+        condition: service_started
+      logstash:
+        condition: service_started
+      kibana:
+        condition: service_started
+    links:
+      - logstash
+    networks:
+      - appnet
+
+  backend_for_notification_service:
+    container_name: backend_for_notification_service
+    build:
+      context: ./notification_service
+    env_file:
+      - ./notification_service/.env
+    volumes:
+      - ./notification_service/:/opt/app
+    ports:
+      - 8005:8000
+    networks:
+      - appnet
+    restart: on-failure
+    depends_on:
+      - mongodb
+
+  backend_for_notification_service_admin_panel:
+    container_name: backend_for_notification_service_admin_panel
+    build:
+      context: ./notification_service/admin_service
+    env_file:
+      - ./notification_service/admin_service/.env
+    volumes:
+      - ./notification_service/admin_service/:/opt/app
+    ports:
+      - 8006:8000
+    networks:
+      - appnet
+    restart: on-failure
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/configs/:/etc/nginx/conf.d/:ro
+      - ./nginx/logs/:/var/log/nginx/
+      - ./admin_panel/static:/opt/app/static
+      - ./admin_panel/media:/opt/app/media
+    ports:
+      - "80:80"
+    networks:
+      - appnet
+    restart: on-failure
+
+  # pgadmin:
+  #   container_name: pgadmin
+  #   image: dpage/pgadmin4
+  #   ports:
+  #     - "82:80"
+  #   environment:
+  #     - PGADMIN_DEFAULT_EMAIL=root@mail.com
+  #     - PGADMIN_DEFAULT_PASSWORD=root
+  #   networks:
+  #     - appnet
+
+networks:
+  appnet:
+    driver: bridge
+    name: appnet
+
+volumes:
+  redis.conf:
+  redis-data:
+  elasticsearch-data:
+  kafka_data:
+  elasticsearch-elk-data:

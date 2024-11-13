@@ -1,0 +1,120 @@
+services:
+  backend_ugc_fastapi_for_test:
+    container_name: backend_ugc_fastapi_for_test
+    build:
+      context: ../../../.
+    image: fastapi_for_test
+    env_file:
+      - ./.env
+    volumes:
+      - ../../../.:/opt/app
+    depends_on:
+      postgres_for_auth:
+        condition: service_started
+      redis:
+        condition: service_started
+      mongodb:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
+    ports:
+      - 8004:8000
+    networks:
+      - appnet
+
+  tests:
+    container_name: tests
+    image: fastapi_for_test
+    env_file:
+      - ./.env
+    networks:
+      - appnet
+    depends_on:
+      - backend_ugc_fastapi_for_test
+    entrypoint: >
+      sh -c "pip install -r ./src/tests/functional/requirements.txt
+      && python -m pytest -vs ./src/tests/functional/src"
+
+  backend_for_auth:
+    container_name: backend_for_auth
+    build:
+      context: ../../../../auth
+    env_file:
+      - ../../../../auth/.env
+    volumes:
+      - ../../../../auth/:/opt/app
+    networks:
+      - appnet
+    ports:
+      - 8000:8000
+    depends_on:
+      postgres_for_auth:
+        condition: service_started
+      redis:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
+
+
+  postgres_for_auth:
+    container_name: postgres_for_auth
+    image: postgres:15.7
+    restart: always
+    env_file:
+      - ../../../../auth/.env
+    volumes:
+      - $HOME/postgresql_for_auth/data:/var/lib/postgresql/data
+      - ./auth/alembic/create_partition_table_entry_histories.ddl:/create_partition_table_entry_histories.ddl:ro
+    ports:
+      - 5432:5432
+    networks:
+      - appnet
+
+  redis:
+    container_name: redis
+    image: redis:latest
+    volumes:
+      - redis-data:/var/lib/redis
+      - redis.conf:/usr/local/etc/redis/redis.conf
+    ports:
+      - 6379:6379
+    networks:
+      - appnet
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    hostname: mongodb
+    ports:
+      - 27017:27017
+    restart: unless-stopped
+    networks:
+      - appnet
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    hostname: rabbitmq
+    ports:
+      - 15672:15672
+      - 5672:5672
+    environment:
+      - RABBITMQ_DEFAULT_USER=username
+      - RABBITMQ_DEFAULT_PASS=password
+    networks:
+      - appnet
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      # interval: 5s
+      # timeout: 3s
+      # retries: 3
+      # start_period: 20s
+
+
+networks:
+  appnet:
+    driver: bridge
+
+volumes:
+  redis.conf:
+  redis-data:

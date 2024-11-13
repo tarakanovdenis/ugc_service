@@ -1,0 +1,16 @@
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /var/log/nginx/*.json
+  json:
+    keys_under_root: true
+    add_error_key: true
+
+
+output.elasticsearch:
+  hosts: ['elasticsearch:9200']
+  index: 'nginx-%{+YYYY.MM.dd}'
+setup.template:
+  name: 'filebeat'
+  pattern: 'filebeat-*'

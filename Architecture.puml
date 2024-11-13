@@ -1,0 +1,81 @@
+@startuml
+!theme blueprint
+skinparam componentStyle uml2
+
+title Current System Architecture
+
+package "Admin Panel Service" {
+  component "Backend (Django)" as admin_panel_backend
+  database "PostgreSQL" as admin_panel_database {
+  }
+
+  admin_panel_backend --> admin_panel_database
+}
+
+package "Async API Service" {
+  component "Backend (FastAPI)" as async_api_backend
+  component "API Gateways" as async_api_gateways
+  database "Elasticsearch" as async_api_es
+  database "Redis" as async_api_redis
+
+  async_api_backend <--> async_api_gateways
+  async_api_backend <--> async_api_es
+  async_api_backend <--> async_api_redis
+}
+
+package "Auth Service" {
+  component "Backend (FastAPI)" as auth_backend
+  component "API Gateways" as auth_api_gateways
+  database "PostgreSQL" as auth_database
+  database "Redis" as auth_redis
+
+  auth_backend <--> auth_api_gateways
+  auth_backend <--> auth_database
+  auth_backend <--> auth_redis
+
+  note left of auth_backend
+    Authentication and Authorization
+    based on JSON Web Tokens
+  end note
+}
+
+package "UGC Service" {
+  component "Backend (Flask)" as ugc_backend
+  component "Frontend: Tracking Clicks on Video" as ugc_frontend
+
+  ugc_backend <--> ugc_frontend
+}
+
+component "ETL" as from_admin_panel_postgres_to_async_api_es_etl
+admin_panel_database --> from_admin_panel_postgres_to_async_api_es_etl
+from_admin_panel_postgres_to_async_api_es_etl --> async_api_es
+
+rectangle "SPA Web Application" as spa_web_app
+rectangle "Tradition Web Application" as web_app
+rectangle "Mobile Web Application" as mobile_web_app
+
+component "Nginx" as nginx {
+  portin "80" as in_nginx_port_80
+  portout "80" as out_nginx_port_80
+}
+
+queue "Message Broker (Kafka)" as ugc_kafka
+
+database "Clickhouse" as clickhouse
+
+component "ETL" as from_ugc_kafka_to_clickhouse_etl
+ugc_kafka --> from_ugc_kafka_to_clickhouse_etl
+from_ugc_kafka_to_clickhouse_etl --> clickhouse
+
+out_nginx_port_80 <--> auth_api_gateways
+out_nginx_port_80 <--> async_api_gateways
+out_nginx_port_80 <--> admin_panel_backend
+
+spa_web_app <--> in_nginx_port_80
+web_app <--> in_nginx_port_80
+mobile_web_app <--> in_nginx_port_80
+
+async_api_backend --> ugc_kafka
+ugc_backend --> ugc_kafka
+
+@enduml
