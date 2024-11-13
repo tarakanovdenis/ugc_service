@@ -1,0 +1,1405 @@
+ERROR:    2024-10-05 06:49:23+0000 Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 693, in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 133, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 133, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 133, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 133, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app/src/app.py", line 17, in lifespan
+    await get_mongodb_client(
+  File "/opt/app/src/db/mongodb.py", line 18, in get_mongodb_client
+    await init_beanie(
+  File "/usr/local/lib/python3.11/site-packages/beanie/odm/utils/init.py", line 750, in init_beanie
+    await Initializer(
+  File "/usr/local/lib/python3.11/site-packages/beanie/odm/utils/init.py", line 128, in __await__
+    yield from self.init_class(model).__await__()
+  File "/usr/local/lib/python3.11/site-packages/beanie/odm/utils/init.py", line 713, in init_class
+    await self.init_document(cls)
+  File "/usr/local/lib/python3.11/site-packages/beanie/odm/utils/init.py", line 545, in init_document
+    build_info = await self.database.command({"buildInfo": 1})
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/_csot.py", line 120, in csot_wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/database.py", line 906, in command
+    with self._client._conn_for_reads(read_preference, session, operation=command_name) as (
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/mongo_client.py", line 1701, in _conn_for_reads
+    server = self._select_server(read_preference, session, operation)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/mongo_client.py", line 1649, in _select_server
+    server = topology.select_server(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 397, in select_server
+    server = self._select_server(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 375, in _select_server
+    servers = self.select_servers(
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 282, in select_servers
+    server_descriptions = self._select_servers_loop(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 332, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: mongodb:27017: [Errno -2] Name or service not known (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 6700e154f69c19c8ec728266, topology_type: Unknown, servers: [<ServerDescription ('mongodb', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('mongodb:27017: [Errno -2] Name or service not known (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+
+ERROR:    2024-10-05 06:49:23+0000 Application startup failed. Exiting.
+INFO:     2024-10-05 06:49:29+0000 Will watch for changes in these directories: ['/opt/app']
+INFO:     2024-10-05 06:49:29+0000 Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     2024-10-05 06:49:29+0000 Started reloader process [1] using WatchFiles
+INFO:     2024-10-05 06:49:30+0000 Started server process [8]
+INFO:     2024-10-05 06:49:30+0000 Waiting for application startup.
+ERROR:    2024-10-05 06:50:01+0000 Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 693, in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 133, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 133, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 133, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 133, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app/src/app.py", line 17, in lifespan
+    await get_mongodb_client(
+  File "/opt/app/src/db/mongodb.py", line 18, in get_mongodb_client
+    await init_beanie(
+  File "/usr/local/lib/python3.11/site-packages/beanie/odm/utils/init.py", line 750, in init_beanie
+    await Initializer(
+  File "/usr/local/lib/python3.11/site-packages/beanie/odm/utils/init.py", line 128, in __await__
+    yield from self.init_class(model).__await__()
+  File "/usr/local/lib/python3.11/site-packages/beanie/odm/utils/init.py", line 713, in init_class
+    await self.init_document(cls)
+  File "/usr/local/lib/python3.11/site-packages/beanie/odm/utils/init.py", line 545, in init_document
+    build_info = await self.database.command({"buildInfo": 1})
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/_csot.py", line 120, in csot_wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/database.py", line 906, in command
+    with self._client._conn_for_reads(read_preference, session, operation=command_name) as (
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/mongo_client.py", line 1701, in _conn_for_reads
+    server = self._select_server(read_preference, session, operation)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/mongo_client.py", line 1649, in _select_server
+    server = topology.select_server(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 397, in select_server
+    server = self._select_server(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 375, in _select_server
+    servers = self.select_servers(
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 282, in select_servers
+    server_descriptions = self._select_servers_loop(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 332, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: mongodb:27017: [Errno -2] Name or service not known (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 6700e17a166f3c3ebc45d0c1, topology_type: Unknown, servers: [<ServerDescription ('mongodb', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('mongodb:27017: [Errno -2] Name or service not known (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+
+ERROR:    2024-10-05 06:50:01+0000 Application startup failed. Exiting.
+INFO:     2024-10-05 06:50:20+0000 Stopping reloader process [1]
+INFO:     2024-10-05 06:50:23+0000 Will watch for changes in these directories: ['/opt/app']
+INFO:     2024-10-05 06:50:23+0000 Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     2024-10-05 06:50:23+0000 Started reloader process [1] using WatchFiles
+INFO:     2024-10-05 06:50:24+0000 Started server process [8]
+INFO:     2024-10-05 06:50:24+0000 Waiting for application startup.
+INFO:     2024-10-05 06:51:14+0000 Will watch for changes in these directories: ['/opt/app']
+INFO:     2024-10-05 06:51:14+0000 Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     2024-10-05 06:51:14+0000 Started reloader process [1] using WatchFiles
+INFO:     2024-10-05 06:51:15+0000 Started server process [8]
+INFO:     2024-10-05 06:51:15+0000 Waiting for application startup.
+ERROR:    2024-10-05 06:51:45+0000 Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 693, in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 133, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 133, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 133, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 133, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app/src/app.py", line 17, in lifespan
+    await get_mongodb_client(
+  File "/opt/app/src/db/mongodb.py", line 18, in get_mongodb_client
+    await init_beanie(
+  File "/usr/local/lib/python3.11/site-packages/beanie/odm/utils/init.py", line 750, in init_beanie
+    await Initializer(
+  File "/usr/local/lib/python3.11/site-packages/beanie/odm/utils/init.py", line 128, in __await__
+    yield from self.init_class(model).__await__()
+  File "/usr/local/lib/python3.11/site-packages/beanie/odm/utils/init.py", line 713, in init_class
+    await self.init_document(cls)
+  File "/usr/local/lib/python3.11/site-packages/beanie/odm/utils/init.py", line 545, in init_document
+    build_info = await self.database.command({"buildInfo": 1})
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/_csot.py", line 120, in csot_wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/database.py", line 906, in command
+    with self._client._conn_for_reads(read_preference, session, operation=command_name) as (
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/mongo_client.py", line 1701, in _conn_for_reads
+    server = self._select_server(read_preference, session, operation)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/mongo_client.py", line 1649, in _select_server
+    server = topology.select_server(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 397, in select_server
+    server = self._select_server(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 375, in _select_server
+    servers = self.select_servers(
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 282, in select_servers
+    server_descriptions = self._select_servers_loop(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 332, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: mongodb:27017: [Errno -2] Name or service not known (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 6700e1e3854cf140dfeb2d5a, topology_type: Unknown, servers: [<ServerDescription ('mongodb', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('mongodb:27017: [Errno -2] Name or service not known (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+
+ERROR:    2024-10-05 06:51:45+0000 Application startup failed. Exiting.
+INFO:     2024-10-05 06:52:12+0000 Stopping reloader process [1]
+INFO:     2024-10-05 06:52:29+0000 Will watch for changes in these directories: ['/opt/app']
+INFO:     2024-10-05 06:52:29+0000 Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     2024-10-05 06:52:29+0000 Started reloader process [1] using WatchFiles
+INFO:     2024-10-05 06:52:30+0000 Started server process [8]
+INFO:     2024-10-05 06:52:30+0000 Waiting for application startup.
+ERROR:    2024-10-05 06:53:00+0000 Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 693, in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 133, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 133, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 133, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 133, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app/src/app.py", line 17, in lifespan
+    await get_mongodb_client(
+  File "/opt/app/src/db/mongodb.py", line 18, in get_mongodb_client
+    await init_beanie(
+  File "/usr/local/lib/python3.11/site-packages/beanie/odm/utils/init.py", line 750, in init_beanie
+    await Initializer(
+  File "/usr/local/lib/python3.11/site-packages/beanie/odm/utils/init.py", line 128, in __await__
+    yield from self.init_class(model).__await__()
+  File "/usr/local/lib/python3.11/site-packages/beanie/odm/utils/init.py", line 713, in init_class
+    await self.init_document(cls)
+  File "/usr/local/lib/python3.11/site-packages/beanie/odm/utils/init.py", line 545, in init_document
+    build_info = await self.database.command({"buildInfo": 1})
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/_csot.py", line 120, in csot_wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/database.py", line 906, in command
+    with self._client._conn_for_reads(read_preference, session, operation=command_name) as (
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/mongo_client.py", line 1701, in _conn_for_reads
+    server = self._select_server(read_preference, session, operation)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/mongo_client.py", line 1649, in _select_server
+    server = topology.select_server(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 397, in select_server
+    server = self._select_server(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 375, in _select_server
+    servers = self.select_servers(
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 282, in select_servers
+    server_descriptions = self._select_servers_loop(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 332, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: mongodb:27017: [Errno -2] Name or service not known (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 6700e22ef008f0a5c6a6810d, topology_type: Unknown, servers: [<ServerDescription ('mongodb', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('mongodb:27017: [Errno -2] Name or service not known (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+
+ERROR:    2024-10-05 06:53:00+0000 Application startup failed. Exiting.
+INFO:     2024-10-05 06:53:08+0000 Stopping reloader process [1]
+INFO:     2024-10-05 06:53:10+0000 Will watch for changes in these directories: ['/opt/app']
+INFO:     2024-10-05 06:53:10+0000 Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     2024-10-05 06:53:10+0000 Started reloader process [1] using WatchFiles
+INFO:     2024-10-05 06:53:11+0000 Started server process [8]
+INFO:     2024-10-05 06:53:11+0000 Waiting for application startup.
+ERROR:    2024-10-05 06:53:41+0000 Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 693, in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 133, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 133, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 133, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 133, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app/src/app.py", line 17, in lifespan
+    await get_mongodb_client(
+  File "/opt/app/src/db/mongodb.py", line 18, in get_mongodb_client
+    await init_beanie(
+  File "/usr/local/lib/python3.11/site-packages/beanie/odm/utils/init.py", line 750, in init_beanie
+    await Initializer(
+  File "/usr/local/lib/python3.11/site-packages/beanie/odm/utils/init.py", line 128, in __await__
+    yield from self.init_class(model).__await__()
+  File "/usr/local/lib/python3.11/site-packages/beanie/odm/utils/init.py", line 713, in init_class
+    await self.init_document(cls)
+  File "/usr/local/lib/python3.11/site-packages/beanie/odm/utils/init.py", line 545, in init_document
+    build_info = await self.database.command({"buildInfo": 1})
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/_csot.py", line 120, in csot_wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/database.py", line 906, in command
+    with self._client._conn_for_reads(read_preference, session, operation=command_name) as (
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/mongo_client.py", line 1701, in _conn_for_reads
+    server = self._select_server(read_preference, session, operation)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/mongo_client.py", line 1649, in _select_server
+    server = topology.select_server(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 397, in select_server
+    server = self._select_server(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 375, in _select_server
+    servers = self.select_servers(
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 282, in select_servers
+    server_descriptions = self._select_servers_loop(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 332, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: mongodb:27017: [Errno -2] Name or service not known (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 6700e257002f90744a648e71, topology_type: Unknown, servers: [<ServerDescription ('mongodb', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('mongodb:27017: [Errno -2] Name or service not known (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+
+ERROR:    2024-10-05 06:53:41+0000 Application startup failed. Exiting.
+INFO:     2024-10-05 06:54:21+0000 Stopping reloader process [1]
+INFO:     2024-10-05 06:55:08+0000 Will watch for changes in these directories: ['/opt/app']
+INFO:     2024-10-05 06:55:08+0000 Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     2024-10-05 06:55:08+0000 Started reloader process [1] using WatchFiles
+INFO:     2024-10-05 06:55:09+0000 Started server process [8]
+INFO:     2024-10-05 06:55:09+0000 Waiting for application startup.
+ERROR:    2024-10-05 06:55:39+0000 Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 693, in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 133, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 133, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 133, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 133, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app/src/app.py", line 17, in lifespan
+    await get_mongodb_client(
+  File "/opt/app/src/db/mongodb.py", line 18, in get_mongodb_client
+    await init_beanie(
+  File "/usr/local/lib/python3.11/site-packages/beanie/odm/utils/init.py", line 750, in init_beanie
+    await Initializer(
+  File "/usr/local/lib/python3.11/site-packages/beanie/odm/utils/init.py", line 128, in __await__
+    yield from self.init_class(model).__await__()
+  File "/usr/local/lib/python3.11/site-packages/beanie/odm/utils/init.py", line 713, in init_class
+    await self.init_document(cls)
+  File "/usr/local/lib/python3.11/site-packages/beanie/odm/utils/init.py", line 545, in init_document
+    build_info = await self.database.command({"buildInfo": 1})
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/_csot.py", line 120, in csot_wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/database.py", line 906, in command
+    with self._client._conn_for_reads(read_preference, session, operation=command_name) as (
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/mongo_client.py", line 1701, in _conn_for_reads
+    server = self._select_server(read_preference, session, operation)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/mongo_client.py", line 1649, in _select_server
+    server = topology.select_server(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 397, in select_server
+    server = self._select_server(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 375, in _select_server
+    servers = self.select_servers(
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 282, in select_servers
+    server_descriptions = self._select_servers_loop(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 332, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: mongodb:27017: [Errno -2] Name or service not known (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 6700e2cd918c72e5f2afd56f, topology_type: Unknown, servers: [<ServerDescription ('mongodb', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('mongodb:27017: [Errno -2] Name or service not known (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+
+ERROR:    2024-10-05 06:55:39+0000 Application startup failed. Exiting.
+INFO:     2024-10-05 06:56:32+0000 Stopping reloader process [1]
+INFO:     2024-10-05 06:56:37+0000 Will watch for changes in these directories: ['/opt/app']
+INFO:     2024-10-05 06:56:37+0000 Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     2024-10-05 06:56:37+0000 Started reloader process [1] using WatchFiles
+INFO:     2024-10-05 06:56:38+0000 Started server process [8]
+INFO:     2024-10-05 06:56:38+0000 Waiting for application startup.
+ERROR:    2024-10-05 06:57:08+0000 Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 693, in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 133, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 133, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 133, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 133, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app/src/app.py", line 17, in lifespan
+    await get_mongodb_client(
+  File "/opt/app/src/db/mongodb.py", line 18, in get_mongodb_client
+    await init_beanie(
+  File "/usr/local/lib/python3.11/site-packages/beanie/odm/utils/init.py", line 750, in init_beanie
+    await Initializer(
+  File "/usr/local/lib/python3.11/site-packages/beanie/odm/utils/init.py", line 128, in __await__
+    yield from self.init_class(model).__await__()
+  File "/usr/local/lib/python3.11/site-packages/beanie/odm/utils/init.py", line 713, in init_class
+    await self.init_document(cls)
+  File "/usr/local/lib/python3.11/site-packages/beanie/odm/utils/init.py", line 545, in init_document
+    build_info = await self.database.command({"buildInfo": 1})
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/_csot.py", line 120, in csot_wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/database.py", line 906, in command
+    with self._client._conn_for_reads(read_preference, session, operation=command_name) as (
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/mongo_client.py", line 1701, in _conn_for_reads
+    server = self._select_server(read_preference, session, operation)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/mongo_client.py", line 1649, in _select_server
+    server = topology.select_server(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 397, in select_server
+    server = self._select_server(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 375, in _select_server
+    servers = self.select_servers(
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 282, in select_servers
+    server_descriptions = self._select_servers_loop(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 332, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: mongodb:27017: [Errno -2] Name or service not known (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 6700e326026a142f1410fad4, topology_type: Unknown, servers: [<ServerDescription ('mongodb', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('mongodb:27017: [Errno -2] Name or service not known (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+
+ERROR:    2024-10-05 06:57:08+0000 Application startup failed. Exiting.
+INFO:     2024-10-05 06:57:08+0000 Stopping reloader process [1]
+INFO:     2024-10-05 06:57:17+0000 Will watch for changes in these directories: ['/opt/app']
+INFO:     2024-10-05 06:57:17+0000 Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     2024-10-05 06:57:17+0000 Started reloader process [1] using WatchFiles
+INFO:     2024-10-05 06:57:19+0000 Started server process [8]
+INFO:     2024-10-05 06:57:19+0000 Waiting for application startup.
+ERROR:    2024-10-05 06:57:49+0000 Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 693, in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 133, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 133, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 133, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 133, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+  File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app/src/app.py", line 17, in lifespan
+    await get_mongodb_client(
+  File "/opt/app/src/db/mongodb.py", line 18, in get_mongodb_client
+    await init_beanie(
+  File "/usr/local/lib/python3.11/site-packages/beanie/odm/utils/init.py", line 750, in init_beanie
+    await Initializer(
+  File "/usr/local/lib/python3.11/site-packages/beanie/odm/utils/init.py", line 128, in __await__
+    yield from self.init_class(model).__await__()
+  File "/usr/local/lib/python3.11/site-packages/beanie/odm/utils/init.py", line 713, in init_class
+    await self.init_document(cls)
+  File "/usr/local/lib/python3.11/site-packages/beanie/odm/utils/init.py", line 545, in init_document
+    build_info = await self.database.command({"buildInfo": 1})
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/_csot.py", line 120, in csot_wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/database.py", line 906, in command
+    with self._client._conn_for_reads(read_preference, session, operation=command_name) as (
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/mongo_client.py", line 1701, in _conn_for_reads
+    server = self._select_server(read_preference, session, operation)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/mongo_client.py", line 1649, in _select_server
+    server = topology.select_server(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 397, in select_server
+    server = self._select_server(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 375, in _select_server
+    servers = self.select_servers(
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 282, in select_servers
+    server_descriptions = self._select_servers_loop(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pymongo/synchronous/topology.py", line 332, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: mongodb:27017: [Errno -2] Name or service not known (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 6700e34f190815e0d441872a, topology_type: Unknown, servers: [<ServerDescription ('mongodb', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('mongodb:27017: [Errno -2] Name or service not known (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+
+ERROR:    2024-10-05 06:57:49+0000 Application startup failed. Exiting.
+INFO:     2024-10-05 06:58:00+0000 Stopping reloader process [1]
+INFO:     2024-10-05 07:00:17+0000 Will watch for changes in these directories: ['/opt/app']
+INFO:     2024-10-05 07:00:17+0000 Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     2024-10-05 07:00:17+0000 Started reloader process [1] using WatchFiles
+INFO:     2024-10-05 07:00:19+0000 Started server process [8]
+INFO:     2024-10-05 07:00:19+0000 Waiting for application startup.
+INFO:     2024-10-05 07:00:19+0000 Application startup complete.
+WARNING:  2024-10-05 07:01:06+0000 WatchFiles detected changes in 'src/tests/functional/fixtures/mongodb_fixtures.py'. Reloading...
+INFO:     2024-10-05 07:01:06+0000 Shutting down
+INFO:     2024-10-05 07:01:06+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:01:06+0000 Application shutdown complete.
+INFO:     2024-10-05 07:01:06+0000 Finished server process [8]
+INFO:     2024-10-05 07:01:08+0000 Started server process [16]
+INFO:     2024-10-05 07:01:08+0000 Waiting for application startup.
+INFO:     2024-10-05 07:01:08+0000 Application startup complete.
+INFO:     2024-10-05 07:03:00+0000 Shutting down
+INFO:     2024-10-05 07:03:00+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:03:00+0000 Application shutdown complete.
+INFO:     2024-10-05 07:03:00+0000 Finished server process [16]
+INFO:     2024-10-05 07:03:00+0000 Stopping reloader process [1]
+INFO:     2024-10-05 07:04:55+0000 Will watch for changes in these directories: ['/opt/app']
+INFO:     2024-10-05 07:04:55+0000 Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     2024-10-05 07:04:55+0000 Started reloader process [1] using WatchFiles
+INFO:     2024-10-05 07:04:56+0000 Started server process [8]
+INFO:     2024-10-05 07:04:56+0000 Waiting for application startup.
+INFO:     2024-10-05 07:04:56+0000 Application startup complete.
+WARNING:  2024-10-05 07:09:02+0000 WatchFiles detected changes in 'src/tests/functional/settings.py'. Reloading...
+INFO:     2024-10-05 07:09:02+0000 Shutting down
+INFO:     2024-10-05 07:09:03+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:09:03+0000 Application shutdown complete.
+INFO:     2024-10-05 07:09:03+0000 Finished server process [8]
+INFO:     2024-10-05 07:09:04+0000 Started server process [46]
+INFO:     2024-10-05 07:09:04+0000 Waiting for application startup.
+INFO:     2024-10-05 07:09:04+0000 Application startup complete.
+WARNING:  2024-10-05 07:09:23+0000 WatchFiles detected changes in 'src/tests/functional/settings.py'. Reloading...
+INFO:     2024-10-05 07:09:23+0000 Shutting down
+INFO:     2024-10-05 07:09:24+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:09:24+0000 Application shutdown complete.
+INFO:     2024-10-05 07:09:24+0000 Finished server process [46]
+INFO:     2024-10-05 07:09:25+0000 Started server process [63]
+INFO:     2024-10-05 07:09:25+0000 Waiting for application startup.
+INFO:     2024-10-05 07:09:25+0000 Application startup complete.
+WARNING:  2024-10-05 07:09:41+0000 WatchFiles detected changes in 'src/tests/functional/fixtures/mongodb_fixtures.py'. Reloading...
+INFO:     2024-10-05 07:09:41+0000 Shutting down
+INFO:     2024-10-05 07:09:41+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:09:41+0000 Application shutdown complete.
+INFO:     2024-10-05 07:09:41+0000 Finished server process [63]
+INFO:     2024-10-05 07:09:42+0000 Started server process [70]
+INFO:     2024-10-05 07:09:42+0000 Waiting for application startup.
+INFO:     2024-10-05 07:09:42+0000 Application startup complete.
+WARNING:  2024-10-05 07:09:58+0000 WatchFiles detected changes in 'src/tests/functional/fixtures/mongodb_fixtures.py'. Reloading...
+INFO:     2024-10-05 07:09:58+0000 Shutting down
+INFO:     2024-10-05 07:09:58+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:09:58+0000 Application shutdown complete.
+INFO:     2024-10-05 07:09:58+0000 Finished server process [70]
+INFO:     2024-10-05 07:09:59+0000 Started server process [77]
+INFO:     2024-10-05 07:09:59+0000 Waiting for application startup.
+INFO:     2024-10-05 07:09:59+0000 Application startup complete.
+WARNING:  2024-10-05 07:10:58+0000 WatchFiles detected changes in 'src/tests/functional/fixtures/mongodb_fixtures.py'. Reloading...
+INFO:     2024-10-05 07:10:59+0000 Shutting down
+INFO:     2024-10-05 07:10:59+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:10:59+0000 Application shutdown complete.
+INFO:     2024-10-05 07:10:59+0000 Finished server process [77]
+INFO:     2024-10-05 07:11:00+0000 Started server process [104]
+INFO:     2024-10-05 07:11:00+0000 Waiting for application startup.
+INFO:     2024-10-05 07:11:00+0000 Application startup complete.
+WARNING:  2024-10-05 07:11:05+0000 WatchFiles detected changes in 'src/tests/functional/fixtures/mongodb_fixtures.py'. Reloading...
+INFO:     2024-10-05 07:11:05+0000 Shutting down
+INFO:     2024-10-05 07:11:05+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:11:05+0000 Application shutdown complete.
+INFO:     2024-10-05 07:11:05+0000 Finished server process [104]
+WARNING:  2024-10-05 07:11:06+0000 WatchFiles detected changes in 'src/tests/functional/fixtures/mongodb_fixtures.py'. Reloading...
+INFO:     2024-10-05 07:11:06+0000 Started server process [121]
+INFO:     2024-10-05 07:11:06+0000 Waiting for application startup.
+INFO:     2024-10-05 07:11:06+0000 Application startup complete.
+INFO:     2024-10-05 07:11:07+0000 Started server process [128]
+INFO:     2024-10-05 07:11:07+0000 Waiting for application startup.
+INFO:     2024-10-05 07:11:07+0000 Application startup complete.
+INFO:     2024-10-05 07:11:16+0000 Shutting down
+INFO:     2024-10-05 07:11:16+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:11:16+0000 Application shutdown complete.
+INFO:     2024-10-05 07:11:16+0000 Finished server process [128]
+INFO:     2024-10-05 07:11:16+0000 Stopping reloader process [1]
+INFO:     2024-10-05 07:11:22+0000 Will watch for changes in these directories: ['/opt/app']
+INFO:     2024-10-05 07:11:22+0000 Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     2024-10-05 07:11:22+0000 Started reloader process [1] using WatchFiles
+INFO:     2024-10-05 07:11:24+0000 Started server process [8]
+INFO:     2024-10-05 07:11:24+0000 Waiting for application startup.
+INFO:     2024-10-05 07:11:24+0000 Application startup complete.
+INFO:     2024-10-05 07:12:20+0000 Shutting down
+INFO:     2024-10-05 07:12:20+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:12:20+0000 Application shutdown complete.
+INFO:     2024-10-05 07:12:20+0000 Finished server process [8]
+INFO:     2024-10-05 07:12:20+0000 Stopping reloader process [1]
+INFO:     2024-10-05 07:12:27+0000 Will watch for changes in these directories: ['/opt/app']
+INFO:     2024-10-05 07:12:27+0000 Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     2024-10-05 07:12:27+0000 Started reloader process [1] using WatchFiles
+INFO:     2024-10-05 07:12:29+0000 Started server process [8]
+INFO:     2024-10-05 07:12:29+0000 Waiting for application startup.
+INFO:     2024-10-05 07:12:30+0000 Application startup complete.
+WARNING:  2024-10-05 07:13:07+0000 WatchFiles detected changes in 'src/tests/functional/fixtures/mongodb_fixtures.py'. Reloading...
+INFO:     2024-10-05 07:13:07+0000 Shutting down
+INFO:     2024-10-05 07:13:08+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:13:08+0000 Application shutdown complete.
+INFO:     2024-10-05 07:13:08+0000 Finished server process [8]
+INFO:     2024-10-05 07:13:09+0000 Started server process [36]
+INFO:     2024-10-05 07:13:09+0000 Waiting for application startup.
+INFO:     2024-10-05 07:13:09+0000 Application startup complete.
+WARNING:  2024-10-05 07:13:16+0000 WatchFiles detected changes in 'src/tests/functional/fixtures/mongodb_fixtures.py'. Reloading...
+INFO:     2024-10-05 07:13:16+0000 Shutting down
+INFO:     2024-10-05 07:13:16+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:13:16+0000 Application shutdown complete.
+INFO:     2024-10-05 07:13:16+0000 Finished server process [36]
+INFO:     2024-10-05 07:13:17+0000 Started server process [43]
+INFO:     2024-10-05 07:13:17+0000 Waiting for application startup.
+INFO:     2024-10-05 07:13:17+0000 Application startup complete.
+WARNING:  2024-10-05 07:18:12+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 07:18:12+0000 Shutting down
+INFO:     2024-10-05 07:18:12+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:18:12+0000 Application shutdown complete.
+INFO:     2024-10-05 07:18:12+0000 Finished server process [43]
+INFO:     2024-10-05 07:18:14+0000 Started server process [60]
+INFO:     2024-10-05 07:18:14+0000 Waiting for application startup.
+INFO:     2024-10-05 07:18:14+0000 Application startup complete.
+WARNING:  2024-10-05 07:22:27+0000 WatchFiles detected changes in 'src/tests/functional/fixtures/mongodb_fixtures.py'. Reloading...
+INFO:     2024-10-05 07:22:27+0000 Shutting down
+INFO:     2024-10-05 07:22:27+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:22:27+0000 Application shutdown complete.
+INFO:     2024-10-05 07:22:27+0000 Finished server process [60]
+INFO:     2024-10-05 07:22:28+0000 Started server process [78]
+INFO:     2024-10-05 07:22:28+0000 Waiting for application startup.
+INFO:     2024-10-05 07:22:28+0000 Application startup complete.
+INFO:     2024-10-05 07:23:01+0000 Shutting down
+INFO:     2024-10-05 07:23:01+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:23:01+0000 Application shutdown complete.
+INFO:     2024-10-05 07:23:01+0000 Finished server process [78]
+INFO:     2024-10-05 07:23:01+0000 Stopping reloader process [1]
+INFO:     2024-10-05 07:23:07+0000 Will watch for changes in these directories: ['/opt/app']
+INFO:     2024-10-05 07:23:07+0000 Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     2024-10-05 07:23:07+0000 Started reloader process [1] using WatchFiles
+INFO:     2024-10-05 07:23:08+0000 Started server process [8]
+INFO:     2024-10-05 07:23:08+0000 Waiting for application startup.
+INFO:     2024-10-05 07:23:08+0000 Application startup complete.
+WARNING:  2024-10-05 07:23:23+0000 WatchFiles detected changes in 'src/tests/functional/fixtures/mongodb_fixtures.py'. Reloading...
+INFO:     2024-10-05 07:23:23+0000 Shutting down
+INFO:     2024-10-05 07:23:23+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:23:23+0000 Application shutdown complete.
+INFO:     2024-10-05 07:23:23+0000 Finished server process [8]
+INFO:     2024-10-05 07:23:25+0000 Started server process [27]
+INFO:     2024-10-05 07:23:25+0000 Waiting for application startup.
+INFO:     2024-10-05 07:23:25+0000 Application startup complete.
+WARNING:  2024-10-05 07:23:49+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 07:23:49+0000 Shutting down
+INFO:     2024-10-05 07:23:49+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:23:49+0000 Application shutdown complete.
+INFO:     2024-10-05 07:23:49+0000 Finished server process [27]
+INFO:     2024-10-05 07:23:50+0000 Started server process [34]
+INFO:     2024-10-05 07:23:50+0000 Waiting for application startup.
+INFO:     2024-10-05 07:23:50+0000 Application startup complete.
+WARNING:  2024-10-05 07:24:28+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 07:24:28+0000 Shutting down
+INFO:     2024-10-05 07:24:28+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:24:28+0000 Application shutdown complete.
+INFO:     2024-10-05 07:24:28+0000 Finished server process [34]
+INFO:     2024-10-05 07:24:29+0000 Started server process [43]
+INFO:     2024-10-05 07:24:29+0000 Waiting for application startup.
+INFO:     2024-10-05 07:24:29+0000 Application startup complete.
+WARNING:  2024-10-05 07:24:34+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 07:24:34+0000 Shutting down
+INFO:     2024-10-05 07:24:34+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:24:34+0000 Application shutdown complete.
+INFO:     2024-10-05 07:24:34+0000 Finished server process [43]
+INFO:     2024-10-05 07:24:35+0000 Started server process [51]
+INFO:     2024-10-05 07:24:35+0000 Waiting for application startup.
+INFO:     2024-10-05 07:24:35+0000 Application startup complete.
+WARNING:  2024-10-05 07:26:50+0000 WatchFiles detected changes in 'src/tests/functional/fixtures/mongodb_fixtures.py'. Reloading...
+INFO:     2024-10-05 07:26:50+0000 Shutting down
+INFO:     2024-10-05 07:26:50+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:26:50+0000 Application shutdown complete.
+INFO:     2024-10-05 07:26:50+0000 Finished server process [51]
+INFO:     2024-10-05 07:26:51+0000 Started server process [58]
+INFO:     2024-10-05 07:26:51+0000 Waiting for application startup.
+INFO:     2024-10-05 07:26:51+0000 Application startup complete.
+WARNING:  2024-10-05 07:27:37+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 07:27:37+0000 Shutting down
+INFO:     2024-10-05 07:27:37+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:27:37+0000 Application shutdown complete.
+INFO:     2024-10-05 07:27:37+0000 Finished server process [58]
+INFO:     2024-10-05 07:27:38+0000 Started server process [66]
+INFO:     2024-10-05 07:27:38+0000 Waiting for application startup.
+INFO:     2024-10-05 07:27:38+0000 Application startup complete.
+WARNING:  2024-10-05 07:28:00+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 07:28:00+0000 Shutting down
+INFO:     2024-10-05 07:28:00+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:28:00+0000 Application shutdown complete.
+INFO:     2024-10-05 07:28:00+0000 Finished server process [66]
+INFO:     2024-10-05 07:28:01+0000 Started server process [73]
+INFO:     2024-10-05 07:28:01+0000 Waiting for application startup.
+INFO:     2024-10-05 07:28:02+0000 Application startup complete.
+WARNING:  2024-10-05 07:28:09+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 07:28:09+0000 Shutting down
+INFO:     2024-10-05 07:28:10+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:28:10+0000 Application shutdown complete.
+INFO:     2024-10-05 07:28:10+0000 Finished server process [73]
+INFO:     2024-10-05 07:28:11+0000 Started server process [80]
+INFO:     2024-10-05 07:28:11+0000 Waiting for application startup.
+INFO:     2024-10-05 07:28:11+0000 Application startup complete.
+WARNING:  2024-10-05 07:29:06+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 07:29:06+0000 Shutting down
+INFO:     2024-10-05 07:29:06+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:29:06+0000 Application shutdown complete.
+INFO:     2024-10-05 07:29:06+0000 Finished server process [80]
+INFO:     2024-10-05 07:29:07+0000 Started server process [87]
+INFO:     2024-10-05 07:29:07+0000 Waiting for application startup.
+INFO:     2024-10-05 07:29:07+0000 Application startup complete.
+WARNING:  2024-10-05 07:29:39+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 07:29:40+0000 Shutting down
+INFO:     2024-10-05 07:29:40+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:29:40+0000 Application shutdown complete.
+INFO:     2024-10-05 07:29:40+0000 Finished server process [87]
+INFO:     2024-10-05 07:29:41+0000 Started server process [94]
+INFO:     2024-10-05 07:29:41+0000 Waiting for application startup.
+INFO:     2024-10-05 07:29:41+0000 Application startup complete.
+WARNING:  2024-10-05 07:29:45+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 07:29:45+0000 Shutting down
+INFO:     2024-10-05 07:29:45+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:29:45+0000 Application shutdown complete.
+INFO:     2024-10-05 07:29:45+0000 Finished server process [94]
+INFO:     2024-10-05 07:29:46+0000 Started server process [101]
+INFO:     2024-10-05 07:29:46+0000 Waiting for application startup.
+INFO:     2024-10-05 07:29:46+0000 Application startup complete.
+WARNING:  2024-10-05 07:30:14+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 07:30:14+0000 Shutting down
+INFO:     2024-10-05 07:30:14+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:30:14+0000 Application shutdown complete.
+INFO:     2024-10-05 07:30:14+0000 Finished server process [101]
+INFO:     2024-10-05 07:30:15+0000 Started server process [108]
+INFO:     2024-10-05 07:30:15+0000 Waiting for application startup.
+INFO:     2024-10-05 07:30:15+0000 Application startup complete.
+WARNING:  2024-10-05 07:30:30+0000 WatchFiles detected changes in 'src/tests/functional/fixtures/mongodb_fixtures.py'. Reloading...
+INFO:     2024-10-05 07:30:30+0000 Shutting down
+INFO:     2024-10-05 07:30:30+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:30:30+0000 Application shutdown complete.
+INFO:     2024-10-05 07:30:30+0000 Finished server process [108]
+INFO:     2024-10-05 07:30:31+0000 Started server process [115]
+INFO:     2024-10-05 07:30:31+0000 Waiting for application startup.
+INFO:     2024-10-05 07:30:31+0000 Application startup complete.
+WARNING:  2024-10-05 07:30:31+0000 WatchFiles detected changes in 'src/tests/functional/fixtures/mongodb_fixtures.py'. Reloading...
+INFO:     2024-10-05 07:30:31+0000 Shutting down
+INFO:     2024-10-05 07:30:32+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:30:32+0000 Application shutdown complete.
+INFO:     2024-10-05 07:30:32+0000 Finished server process [115]
+INFO:     2024-10-05 07:30:32+0000 Started server process [122]
+INFO:     2024-10-05 07:30:32+0000 Waiting for application startup.
+INFO:     2024-10-05 07:30:32+0000 Application startup complete.
+WARNING:  2024-10-05 07:32:36+0000 WatchFiles detected changes in 'src/tests/functional/fixtures/mongodb_fixtures.py'. Reloading...
+INFO:     2024-10-05 07:32:36+0000 Shutting down
+INFO:     2024-10-05 07:32:36+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:32:36+0000 Application shutdown complete.
+INFO:     2024-10-05 07:32:36+0000 Finished server process [122]
+INFO:     2024-10-05 07:32:37+0000 Started server process [129]
+INFO:     2024-10-05 07:32:37+0000 Waiting for application startup.
+INFO:     2024-10-05 07:32:37+0000 Application startup complete.
+WARNING:  2024-10-05 07:32:42+0000 WatchFiles detected changes in 'src/tests/functional/conftest.py'. Reloading...
+INFO:     2024-10-05 07:32:42+0000 Shutting down
+INFO:     2024-10-05 07:32:42+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:32:42+0000 Application shutdown complete.
+INFO:     2024-10-05 07:32:42+0000 Finished server process [129]
+INFO:     2024-10-05 07:32:43+0000 Started server process [136]
+INFO:     2024-10-05 07:32:43+0000 Waiting for application startup.
+INFO:     2024-10-05 07:32:43+0000 Application startup complete.
+WARNING:  2024-10-05 07:32:54+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 07:32:54+0000 Shutting down
+INFO:     2024-10-05 07:32:54+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:32:54+0000 Application shutdown complete.
+INFO:     2024-10-05 07:32:54+0000 Finished server process [136]
+INFO:     2024-10-05 07:32:55+0000 Started server process [143]
+INFO:     2024-10-05 07:32:55+0000 Waiting for application startup.
+INFO:     2024-10-05 07:32:55+0000 Application startup complete.
+WARNING:  2024-10-05 07:33:12+0000 WatchFiles detected changes in 'src/tests/functional/conftest.py'. Reloading...
+INFO:     2024-10-05 07:33:12+0000 Shutting down
+INFO:     2024-10-05 07:33:12+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:33:12+0000 Application shutdown complete.
+INFO:     2024-10-05 07:33:12+0000 Finished server process [143]
+INFO:     2024-10-05 07:33:13+0000 Started server process [151]
+INFO:     2024-10-05 07:33:13+0000 Waiting for application startup.
+INFO:     2024-10-05 07:33:13+0000 Application startup complete.
+WARNING:  2024-10-05 07:33:29+0000 WatchFiles detected changes in 'src/tests/functional/fixtures/mongodb_fixtures.py'. Reloading...
+INFO:     2024-10-05 07:33:29+0000 Shutting down
+INFO:     2024-10-05 07:33:29+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:33:29+0000 Application shutdown complete.
+INFO:     2024-10-05 07:33:29+0000 Finished server process [151]
+INFO:     2024-10-05 07:33:30+0000 Started server process [159]
+INFO:     2024-10-05 07:33:30+0000 Waiting for application startup.
+INFO:     2024-10-05 07:33:30+0000 Application startup complete.
+WARNING:  2024-10-05 07:33:56+0000 WatchFiles detected changes in 'src/tests/functional/fixtures/mongodb_fixtures.py'. Reloading...
+INFO:     2024-10-05 07:33:56+0000 Shutting down
+INFO:     2024-10-05 07:33:56+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:33:56+0000 Application shutdown complete.
+INFO:     2024-10-05 07:33:56+0000 Finished server process [159]
+INFO:     2024-10-05 07:33:57+0000 Started server process [167]
+INFO:     2024-10-05 07:33:57+0000 Waiting for application startup.
+INFO:     2024-10-05 07:33:57+0000 Application startup complete.
+WARNING:  2024-10-05 07:34:14+0000 WatchFiles detected changes in 'src/tests/functional/fixtures/mongodb_fixtures.py'. Reloading...
+INFO:     2024-10-05 07:34:14+0000 Shutting down
+INFO:     2024-10-05 07:34:14+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:34:14+0000 Application shutdown complete.
+INFO:     2024-10-05 07:34:14+0000 Finished server process [167]
+INFO:     2024-10-05 07:34:15+0000 Started server process [174]
+INFO:     2024-10-05 07:34:15+0000 Waiting for application startup.
+INFO:     2024-10-05 07:34:15+0000 Application startup complete.
+WARNING:  2024-10-05 07:34:29+0000 WatchFiles detected changes in 'src/tests/functional/fixtures/mongodb_fixtures.py'. Reloading...
+INFO:     2024-10-05 07:34:29+0000 Shutting down
+INFO:     2024-10-05 07:34:30+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:34:30+0000 Application shutdown complete.
+INFO:     2024-10-05 07:34:30+0000 Finished server process [174]
+INFO:     2024-10-05 07:34:31+0000 Started server process [183]
+INFO:     2024-10-05 07:34:31+0000 Waiting for application startup.
+INFO:     2024-10-05 07:34:31+0000 Application startup complete.
+WARNING:  2024-10-05 07:34:56+0000 WatchFiles detected changes in 'src/tests/functional/fixtures/mongodb_fixtures.py'. Reloading...
+INFO:     2024-10-05 07:34:56+0000 Shutting down
+INFO:     2024-10-05 07:34:56+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:34:56+0000 Application shutdown complete.
+INFO:     2024-10-05 07:34:56+0000 Finished server process [183]
+INFO:     2024-10-05 07:34:57+0000 Started server process [190]
+INFO:     2024-10-05 07:34:57+0000 Waiting for application startup.
+INFO:     2024-10-05 07:34:57+0000 Application startup complete.
+WARNING:  2024-10-05 07:35:10+0000 WatchFiles detected changes in 'src/tests/functional/fixtures/mongodb_fixtures.py'. Reloading...
+INFO:     2024-10-05 07:35:10+0000 Shutting down
+INFO:     2024-10-05 07:35:10+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:35:10+0000 Application shutdown complete.
+INFO:     2024-10-05 07:35:10+0000 Finished server process [190]
+INFO:     2024-10-05 07:35:11+0000 Started server process [197]
+INFO:     2024-10-05 07:35:11+0000 Waiting for application startup.
+INFO:     2024-10-05 07:35:11+0000 Application startup complete.
+WARNING:  2024-10-05 07:35:18+0000 WatchFiles detected changes in 'src/tests/functional/fixtures/mongodb_fixtures.py'. Reloading...
+INFO:     2024-10-05 07:35:18+0000 Shutting down
+INFO:     2024-10-05 07:35:18+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:35:18+0000 Application shutdown complete.
+INFO:     2024-10-05 07:35:18+0000 Finished server process [197]
+INFO:     2024-10-05 07:35:19+0000 Started server process [204]
+INFO:     2024-10-05 07:35:19+0000 Waiting for application startup.
+INFO:     2024-10-05 07:35:19+0000 Application startup complete.
+WARNING:  2024-10-05 07:35:38+0000 WatchFiles detected changes in 'src/tests/functional/fixtures/mongodb_fixtures.py'. Reloading...
+INFO:     2024-10-05 07:35:38+0000 Shutting down
+INFO:     2024-10-05 07:35:38+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:35:38+0000 Application shutdown complete.
+INFO:     2024-10-05 07:35:38+0000 Finished server process [204]
+INFO:     2024-10-05 07:35:39+0000 Started server process [212]
+INFO:     2024-10-05 07:35:39+0000 Waiting for application startup.
+INFO:     2024-10-05 07:35:39+0000 Application startup complete.
+WARNING:  2024-10-05 07:35:42+0000 WatchFiles detected changes in 'src/tests/functional/fixtures/mongodb_fixtures.py'. Reloading...
+INFO:     2024-10-05 07:35:42+0000 Shutting down
+INFO:     2024-10-05 07:35:42+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:35:42+0000 Application shutdown complete.
+INFO:     2024-10-05 07:35:42+0000 Finished server process [212]
+INFO:     2024-10-05 07:35:43+0000 Started server process [219]
+INFO:     2024-10-05 07:35:43+0000 Waiting for application startup.
+INFO:     2024-10-05 07:35:43+0000 Application startup complete.
+WARNING:  2024-10-05 07:35:53+0000 WatchFiles detected changes in 'src/tests/functional/fixtures/mongodb_fixtures.py'. Reloading...
+INFO:     2024-10-05 07:35:53+0000 Shutting down
+INFO:     2024-10-05 07:35:53+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:35:53+0000 Application shutdown complete.
+INFO:     2024-10-05 07:35:53+0000 Finished server process [219]
+INFO:     2024-10-05 07:35:54+0000 Started server process [227]
+INFO:     2024-10-05 07:35:54+0000 Waiting for application startup.
+INFO:     2024-10-05 07:35:54+0000 Application startup complete.
+WARNING:  2024-10-05 07:35:57+0000 WatchFiles detected changes in 'src/tests/functional/fixtures/mongodb_fixtures.py'. Reloading...
+INFO:     2024-10-05 07:35:57+0000 Shutting down
+INFO:     2024-10-05 07:35:57+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:35:57+0000 Application shutdown complete.
+INFO:     2024-10-05 07:35:57+0000 Finished server process [227]
+INFO:     2024-10-05 07:35:58+0000 Started server process [234]
+INFO:     2024-10-05 07:35:58+0000 Waiting for application startup.
+INFO:     2024-10-05 07:35:58+0000 Application startup complete.
+WARNING:  2024-10-05 07:38:02+0000 WatchFiles detected changes in 'src/tests/functional/fixtures/mongodb_fixtures.py'. Reloading...
+INFO:     2024-10-05 07:38:02+0000 Shutting down
+INFO:     2024-10-05 07:38:02+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:38:02+0000 Application shutdown complete.
+INFO:     2024-10-05 07:38:02+0000 Finished server process [234]
+INFO:     2024-10-05 07:38:03+0000 Started server process [242]
+INFO:     2024-10-05 07:38:03+0000 Waiting for application startup.
+INFO:     2024-10-05 07:38:03+0000 Application startup complete.
+WARNING:  2024-10-05 07:38:51+0000 WatchFiles detected changes in 'src/tests/functional/fixtures/mongodb_fixtures.py'. Reloading...
+INFO:     2024-10-05 07:38:51+0000 Shutting down
+INFO:     2024-10-05 07:38:51+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:38:51+0000 Application shutdown complete.
+INFO:     2024-10-05 07:38:51+0000 Finished server process [242]
+INFO:     2024-10-05 07:38:53+0000 Started server process [250]
+INFO:     2024-10-05 07:38:53+0000 Waiting for application startup.
+INFO:     2024-10-05 07:38:53+0000 Application startup complete.
+WARNING:  2024-10-05 07:39:01+0000 WatchFiles detected changes in 'src/tests/functional/fixtures/mongodb_fixtures.py'. Reloading...
+INFO:     2024-10-05 07:39:01+0000 Shutting down
+INFO:     2024-10-05 07:39:01+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:39:01+0000 Application shutdown complete.
+INFO:     2024-10-05 07:39:01+0000 Finished server process [250]
+WARNING:  2024-10-05 07:39:01+0000 WatchFiles detected changes in 'src/tests/functional/fixtures/mongodb_fixtures.py'. Reloading...
+INFO:     2024-10-05 07:39:02+0000 Started server process [258]
+INFO:     2024-10-05 07:39:02+0000 Waiting for application startup.
+INFO:     2024-10-05 07:39:02+0000 Application startup complete.
+INFO:     2024-10-05 07:39:03+0000 Started server process [265]
+INFO:     2024-10-05 07:39:03+0000 Waiting for application startup.
+INFO:     2024-10-05 07:39:03+0000 Application startup complete.
+WARNING:  2024-10-05 07:42:18+0000 WatchFiles detected changes in 'src/tests/functional/fixtures/mongodb_fixtures.py'. Reloading...
+INFO:     2024-10-05 07:42:18+0000 Shutting down
+INFO:     2024-10-05 07:42:19+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:42:19+0000 Application shutdown complete.
+INFO:     2024-10-05 07:42:19+0000 Finished server process [265]
+INFO:     2024-10-05 07:42:20+0000 Started server process [275]
+INFO:     2024-10-05 07:42:20+0000 Waiting for application startup.
+INFO:     2024-10-05 07:42:20+0000 Application startup complete.
+WARNING:  2024-10-05 07:42:22+0000 WatchFiles detected changes in 'src/tests/functional/fixtures/mongodb_fixtures.py'. Reloading...
+INFO:     2024-10-05 07:42:22+0000 Shutting down
+INFO:     2024-10-05 07:42:23+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:42:23+0000 Application shutdown complete.
+INFO:     2024-10-05 07:42:23+0000 Finished server process [275]
+INFO:     2024-10-05 07:42:24+0000 Started server process [282]
+INFO:     2024-10-05 07:42:24+0000 Waiting for application startup.
+INFO:     2024-10-05 07:42:24+0000 Application startup complete.
+WARNING:  2024-10-05 07:42:41+0000 WatchFiles detected changes in 'src/tests/functional/fixtures/mongodb_fixtures.py'. Reloading...
+INFO:     2024-10-05 07:42:41+0000 Shutting down
+INFO:     2024-10-05 07:42:41+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:42:41+0000 Application shutdown complete.
+INFO:     2024-10-05 07:42:41+0000 Finished server process [282]
+INFO:     2024-10-05 07:42:42+0000 Started server process [290]
+INFO:     2024-10-05 07:42:42+0000 Waiting for application startup.
+INFO:     2024-10-05 07:42:42+0000 Application startup complete.
+WARNING:  2024-10-05 07:42:59+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 07:42:59+0000 Shutting down
+INFO:     2024-10-05 07:42:59+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:42:59+0000 Application shutdown complete.
+INFO:     2024-10-05 07:42:59+0000 Finished server process [290]
+INFO:     2024-10-05 07:43:00+0000 Started server process [297]
+INFO:     2024-10-05 07:43:00+0000 Waiting for application startup.
+INFO:     2024-10-05 07:43:00+0000 Application startup complete.
+WARNING:  2024-10-05 07:45:02+0000 WatchFiles detected changes in 'src/tests/functional/fixtures/mongodb_fixtures.py'. Reloading...
+INFO:     2024-10-05 07:45:03+0000 Shutting down
+INFO:     2024-10-05 07:45:03+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:45:03+0000 Application shutdown complete.
+INFO:     2024-10-05 07:45:03+0000 Finished server process [297]
+INFO:     2024-10-05 07:45:04+0000 Started server process [315]
+INFO:     2024-10-05 07:45:04+0000 Waiting for application startup.
+INFO:     2024-10-05 07:45:04+0000 Application startup complete.
+WARNING:  2024-10-05 07:45:25+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 07:45:25+0000 Shutting down
+INFO:     2024-10-05 07:45:25+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:45:25+0000 Application shutdown complete.
+INFO:     2024-10-05 07:45:25+0000 Finished server process [315]
+INFO:     2024-10-05 07:45:26+0000 Started server process [355]
+INFO:     2024-10-05 07:45:26+0000 Waiting for application startup.
+INFO:     2024-10-05 07:45:26+0000 Application startup complete.
+WARNING:  2024-10-05 07:49:52+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 07:49:52+0000 Shutting down
+INFO:     2024-10-05 07:49:53+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:49:53+0000 Application shutdown complete.
+INFO:     2024-10-05 07:49:53+0000 Finished server process [355]
+INFO:     2024-10-05 07:49:54+0000 Started server process [374]
+INFO:     2024-10-05 07:49:54+0000 Waiting for application startup.
+INFO:     2024-10-05 07:49:54+0000 Application startup complete.
+WARNING:  2024-10-05 07:49:55+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 07:49:55+0000 Shutting down
+INFO:     2024-10-05 07:49:55+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:49:55+0000 Application shutdown complete.
+INFO:     2024-10-05 07:49:55+0000 Finished server process [374]
+INFO:     2024-10-05 07:49:56+0000 Started server process [381]
+INFO:     2024-10-05 07:49:56+0000 Waiting for application startup.
+INFO:     2024-10-05 07:49:56+0000 Application startup complete.
+WARNING:  2024-10-05 07:51:34+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 07:51:34+0000 Shutting down
+INFO:     2024-10-05 07:51:34+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:51:34+0000 Application shutdown complete.
+INFO:     2024-10-05 07:51:34+0000 Finished server process [381]
+INFO:     2024-10-05 07:51:35+0000 Started server process [388]
+INFO:     2024-10-05 07:51:35+0000 Waiting for application startup.
+INFO:     2024-10-05 07:51:35+0000 Application startup complete.
+WARNING:  2024-10-05 07:51:44+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 07:51:44+0000 Shutting down
+INFO:     2024-10-05 07:51:44+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:51:44+0000 Application shutdown complete.
+INFO:     2024-10-05 07:51:44+0000 Finished server process [388]
+INFO:     2024-10-05 07:51:45+0000 Started server process [395]
+INFO:     2024-10-05 07:51:45+0000 Waiting for application startup.
+INFO:     2024-10-05 07:51:45+0000 Application startup complete.
+WARNING:  2024-10-05 07:53:32+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 07:53:32+0000 Shutting down
+INFO:     2024-10-05 07:53:32+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:53:32+0000 Application shutdown complete.
+INFO:     2024-10-05 07:53:32+0000 Finished server process [395]
+INFO:     2024-10-05 07:53:33+0000 Started server process [416]
+INFO:     2024-10-05 07:53:33+0000 Waiting for application startup.
+INFO:     2024-10-05 07:53:33+0000 Application startup complete.
+WARNING:  2024-10-05 07:53:37+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 07:53:37+0000 Shutting down
+INFO:     2024-10-05 07:53:37+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:53:37+0000 Application shutdown complete.
+INFO:     2024-10-05 07:53:37+0000 Finished server process [416]
+INFO:     2024-10-05 07:53:38+0000 Started server process [423]
+INFO:     2024-10-05 07:53:38+0000 Waiting for application startup.
+INFO:     2024-10-05 07:53:38+0000 Application startup complete.
+WARNING:  2024-10-05 07:54:34+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 07:54:34+0000 Shutting down
+INFO:     2024-10-05 07:54:34+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:54:34+0000 Application shutdown complete.
+INFO:     2024-10-05 07:54:34+0000 Finished server process [423]
+INFO:     2024-10-05 07:54:35+0000 Started server process [437]
+INFO:     2024-10-05 07:54:35+0000 Waiting for application startup.
+INFO:     2024-10-05 07:54:35+0000 Application startup complete.
+WARNING:  2024-10-05 07:55:49+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 07:55:49+0000 Shutting down
+INFO:     2024-10-05 07:55:49+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:55:49+0000 Application shutdown complete.
+INFO:     2024-10-05 07:55:49+0000 Finished server process [437]
+INFO:     2024-10-05 07:55:50+0000 Started server process [458]
+INFO:     2024-10-05 07:55:50+0000 Waiting for application startup.
+INFO:     2024-10-05 07:55:50+0000 Application startup complete.
+WARNING:  2024-10-05 07:56:12+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 07:56:12+0000 Shutting down
+INFO:     2024-10-05 07:56:12+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:56:12+0000 Application shutdown complete.
+INFO:     2024-10-05 07:56:12+0000 Finished server process [458]
+INFO:     2024-10-05 07:56:13+0000 Started server process [465]
+INFO:     2024-10-05 07:56:13+0000 Waiting for application startup.
+INFO:     2024-10-05 07:56:13+0000 Application startup complete.
+WARNING:  2024-10-05 07:56:49+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 07:56:49+0000 Shutting down
+INFO:     2024-10-05 07:56:49+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:56:49+0000 Application shutdown complete.
+INFO:     2024-10-05 07:56:49+0000 Finished server process [465]
+INFO:     2024-10-05 07:56:50+0000 Started server process [479]
+INFO:     2024-10-05 07:56:50+0000 Waiting for application startup.
+INFO:     2024-10-05 07:56:50+0000 Application startup complete.
+WARNING:  2024-10-05 07:57:05+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 07:57:05+0000 Shutting down
+INFO:     2024-10-05 07:57:05+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:57:05+0000 Application shutdown complete.
+INFO:     2024-10-05 07:57:05+0000 Finished server process [479]
+INFO:     2024-10-05 07:57:06+0000 Started server process [493]
+INFO:     2024-10-05 07:57:06+0000 Waiting for application startup.
+INFO:     2024-10-05 07:57:06+0000 Application startup complete.
+WARNING:  2024-10-05 07:57:27+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 07:57:27+0000 Shutting down
+INFO:     2024-10-05 07:57:27+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:57:27+0000 Application shutdown complete.
+INFO:     2024-10-05 07:57:27+0000 Finished server process [493]
+INFO:     2024-10-05 07:57:28+0000 Started server process [507]
+INFO:     2024-10-05 07:57:28+0000 Waiting for application startup.
+INFO:     2024-10-05 07:57:28+0000 Application startup complete.
+WARNING:  2024-10-05 07:58:26+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py', 'src/tests/functional/src/tests.py'. Reloading...
+INFO:     2024-10-05 07:58:26+0000 Shutting down
+INFO:     2024-10-05 07:58:26+0000 Waiting for application shutdown.
+INFO:     2024-10-05 07:58:26+0000 Application shutdown complete.
+INFO:     2024-10-05 07:58:26+0000 Finished server process [507]
+INFO:     2024-10-05 07:58:27+0000 Started server process [521]
+INFO:     2024-10-05 07:58:27+0000 Waiting for application startup.
+INFO:     2024-10-05 07:58:27+0000 Application startup complete.
+WARNING:  2024-10-05 08:51:31+0000 WatchFiles detected changes in 'src/tests/functional/fixtures/make_request_fixtures.py'. Reloading...
+INFO:     2024-10-05 08:51:31+0000 Shutting down
+INFO:     2024-10-05 08:51:31+0000 Waiting for application shutdown.
+INFO:     2024-10-05 08:51:31+0000 Application shutdown complete.
+INFO:     2024-10-05 08:51:31+0000 Finished server process [521]
+INFO:     2024-10-05 08:51:33+0000 Started server process [528]
+INFO:     2024-10-05 08:51:33+0000 Waiting for application startup.
+INFO:     2024-10-05 08:51:33+0000 Application startup complete.
+WARNING:  2024-10-05 08:54:29+0000 WatchFiles detected changes in 'src/tests/functional/src/tests.py'. Reloading...
+INFO:     2024-10-05 08:54:29+0000 Shutting down
+INFO:     2024-10-05 08:54:29+0000 Waiting for application shutdown.
+INFO:     2024-10-05 08:54:29+0000 Application shutdown complete.
+INFO:     2024-10-05 08:54:29+0000 Finished server process [528]
+INFO:     2024-10-05 08:54:30+0000 Started server process [535]
+INFO:     2024-10-05 08:54:30+0000 Waiting for application startup.
+INFO:     2024-10-05 08:54:30+0000 Application startup complete.
+WARNING:  2024-10-05 08:57:37+0000 WatchFiles detected changes in 'src/tests/functional/src/tests.py'. Reloading...
+INFO:     2024-10-05 08:57:37+0000 Shutting down
+INFO:     2024-10-05 08:57:38+0000 Waiting for application shutdown.
+INFO:     2024-10-05 08:57:38+0000 Application shutdown complete.
+INFO:     2024-10-05 08:57:38+0000 Finished server process [535]
+INFO:     2024-10-05 08:57:39+0000 Started server process [542]
+INFO:     2024-10-05 08:57:39+0000 Waiting for application startup.
+INFO:     2024-10-05 08:57:39+0000 Application startup complete.
+WARNING:  2024-10-05 08:57:47+0000 WatchFiles detected changes in 'src/tests/functional/src/tests.py'. Reloading...
+INFO:     2024-10-05 08:57:47+0000 Shutting down
+INFO:     2024-10-05 08:57:48+0000 Waiting for application shutdown.
+INFO:     2024-10-05 08:57:48+0000 Application shutdown complete.
+INFO:     2024-10-05 08:57:48+0000 Finished server process [542]
+INFO:     2024-10-05 08:57:49+0000 Started server process [549]
+INFO:     2024-10-05 08:57:49+0000 Waiting for application startup.
+INFO:     2024-10-05 08:57:49+0000 Application startup complete.
+WARNING:  2024-10-05 08:58:05+0000 WatchFiles detected changes in 'src/tests/functional/src/tests.py'. Reloading...
+INFO:     2024-10-05 08:58:05+0000 Shutting down
+INFO:     2024-10-05 08:58:05+0000 Waiting for application shutdown.
+INFO:     2024-10-05 08:58:05+0000 Application shutdown complete.
+INFO:     2024-10-05 08:58:05+0000 Finished server process [549]
+INFO:     2024-10-05 08:58:06+0000 Started server process [556]
+INFO:     2024-10-05 08:58:06+0000 Waiting for application startup.
+INFO:     2024-10-05 08:58:06+0000 Application startup complete.
+INFO:     2024-10-05 09:01:47+0000 Will watch for changes in these directories: ['/opt/app']
+INFO:     2024-10-05 09:01:47+0000 Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     2024-10-05 09:01:47+0000 Started reloader process [1] using WatchFiles
+INFO:     2024-10-05 09:01:48+0000 Started server process [8]
+INFO:     2024-10-05 09:01:48+0000 Waiting for application startup.
+INFO:     2024-10-05 09:01:48+0000 Application startup complete.
+INFO:     2024-10-05 09:02:12+0000 Shutting down
+INFO:     2024-10-05 09:02:12+0000 Waiting for application shutdown.
+INFO:     2024-10-05 09:02:12+0000 Application shutdown complete.
+INFO:     2024-10-05 09:02:12+0000 Finished server process [8]
+INFO:     2024-10-05 09:02:12+0000 Stopping reloader process [1]
+INFO:     2024-10-05 09:02:16+0000 Will watch for changes in these directories: ['/opt/app']
+INFO:     2024-10-05 09:02:16+0000 Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     2024-10-05 09:02:16+0000 Started reloader process [1] using WatchFiles
+INFO:     2024-10-05 09:02:17+0000 Started server process [8]
+INFO:     2024-10-05 09:02:17+0000 Waiting for application startup.
+INFO:     2024-10-05 09:02:17+0000 Application startup complete.
+WARNING:  2024-10-05 09:03:46+0000 WatchFiles detected changes in 'src/tests/functional/src/tests.py'. Reloading...
+INFO:     2024-10-05 09:03:46+0000 Shutting down
+INFO:     2024-10-05 09:03:46+0000 Waiting for application shutdown.
+INFO:     2024-10-05 09:03:46+0000 Application shutdown complete.
+INFO:     2024-10-05 09:03:46+0000 Finished server process [8]
+INFO:     2024-10-05 09:03:47+0000 Started server process [16]
+INFO:     2024-10-05 09:03:47+0000 Waiting for application startup.
+INFO:     2024-10-05 09:03:47+0000 Application startup complete.
+INFO:     2024-10-05 09:06:22+0000 Will watch for changes in these directories: ['/opt/app']
+INFO:     2024-10-05 09:06:22+0000 Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     2024-10-05 09:06:22+0000 Started reloader process [1] using WatchFiles
+INFO:     2024-10-05 09:06:23+0000 Started server process [8]
+INFO:     2024-10-05 09:06:23+0000 Waiting for application startup.
+INFO:     2024-10-05 09:06:23+0000 Application startup complete.
+WARNING:  2024-10-05 09:07:57+0000 WatchFiles detected changes in 'src/tests/functional/src/tests.py'. Reloading...
+INFO:     2024-10-05 09:07:57+0000 Shutting down
+INFO:     2024-10-05 09:07:57+0000 Waiting for application shutdown.
+INFO:     2024-10-05 09:07:57+0000 Application shutdown complete.
+INFO:     2024-10-05 09:07:57+0000 Finished server process [8]
+INFO:     2024-10-05 09:07:59+0000 Started server process [16]
+INFO:     2024-10-05 09:07:59+0000 Waiting for application startup.
+INFO:     2024-10-05 09:07:59+0000 Application startup complete.
+WARNING:  2024-10-05 09:08:37+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py', 'src/tests/functional/src/tests.py'. Reloading...
+INFO:     2024-10-05 09:08:37+0000 Shutting down
+INFO:     2024-10-05 09:08:38+0000 Waiting for application shutdown.
+INFO:     2024-10-05 09:08:38+0000 Application shutdown complete.
+INFO:     2024-10-05 09:08:38+0000 Finished server process [16]
+INFO:     2024-10-05 09:08:39+0000 Started server process [23]
+INFO:     2024-10-05 09:08:39+0000 Waiting for application startup.
+INFO:     2024-10-05 09:08:39+0000 Application startup complete.
+WARNING:  2024-10-05 09:16:20+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 09:16:20+0000 Shutting down
+INFO:     2024-10-05 09:16:20+0000 Waiting for application shutdown.
+INFO:     2024-10-05 09:16:20+0000 Application shutdown complete.
+INFO:     2024-10-05 09:16:20+0000 Finished server process [23]
+INFO:     2024-10-05 09:16:21+0000 Started server process [62]
+INFO:     2024-10-05 09:16:21+0000 Waiting for application startup.
+INFO:     2024-10-05 09:16:21+0000 Application startup complete.
+WARNING:  2024-10-05 09:16:44+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 09:16:44+0000 Shutting down
+INFO:     2024-10-05 09:16:44+0000 Waiting for application shutdown.
+INFO:     2024-10-05 09:16:44+0000 Application shutdown complete.
+INFO:     2024-10-05 09:16:44+0000 Finished server process [62]
+INFO:     2024-10-05 09:16:45+0000 Started server process [69]
+INFO:     2024-10-05 09:16:45+0000 Waiting for application startup.
+INFO:     2024-10-05 09:16:45+0000 Application startup complete.
+WARNING:  2024-10-05 09:17:22+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 09:17:22+0000 Shutting down
+INFO:     2024-10-05 09:17:23+0000 Waiting for application shutdown.
+INFO:     2024-10-05 09:17:23+0000 Application shutdown complete.
+INFO:     2024-10-05 09:17:23+0000 Finished server process [69]
+INFO:     2024-10-05 09:17:24+0000 Started server process [85]
+INFO:     2024-10-05 09:17:24+0000 Waiting for application startup.
+INFO:     2024-10-05 09:17:24+0000 Application startup complete.
+WARNING:  2024-10-05 09:18:42+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 09:18:42+0000 Shutting down
+INFO:     2024-10-05 09:18:42+0000 Waiting for application shutdown.
+INFO:     2024-10-05 09:18:42+0000 Application shutdown complete.
+INFO:     2024-10-05 09:18:42+0000 Finished server process [85]
+INFO:     2024-10-05 09:18:43+0000 Started server process [119]
+INFO:     2024-10-05 09:18:43+0000 Waiting for application startup.
+INFO:     2024-10-05 09:18:43+0000 Application startup complete.
+WARNING:  2024-10-05 09:20:42+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 09:20:42+0000 Shutting down
+INFO:     2024-10-05 09:20:42+0000 Waiting for application shutdown.
+INFO:     2024-10-05 09:20:42+0000 Application shutdown complete.
+INFO:     2024-10-05 09:20:42+0000 Finished server process [119]
+INFO:     2024-10-05 09:20:43+0000 Started server process [153]
+INFO:     2024-10-05 09:20:43+0000 Waiting for application startup.
+INFO:     2024-10-05 09:20:44+0000 Application startup complete.
+WARNING:  2024-10-05 09:22:41+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 09:22:41+0000 Shutting down
+INFO:     2024-10-05 09:22:41+0000 Waiting for application shutdown.
+INFO:     2024-10-05 09:22:41+0000 Application shutdown complete.
+INFO:     2024-10-05 09:22:41+0000 Finished server process [153]
+INFO:     2024-10-05 09:22:42+0000 Started server process [178]
+INFO:     2024-10-05 09:22:42+0000 Waiting for application startup.
+INFO:     2024-10-05 09:22:42+0000 Application startup complete.
+WARNING:  2024-10-05 09:23:47+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 09:23:47+0000 Shutting down
+INFO:     2024-10-05 09:23:47+0000 Waiting for application shutdown.
+INFO:     2024-10-05 09:23:47+0000 Application shutdown complete.
+INFO:     2024-10-05 09:23:47+0000 Finished server process [178]
+INFO:     2024-10-05 09:23:48+0000 Started server process [194]
+INFO:     2024-10-05 09:23:48+0000 Waiting for application startup.
+INFO:     2024-10-05 09:23:48+0000 Application startup complete.
+WARNING:  2024-10-05 09:23:50+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 09:23:50+0000 Shutting down
+INFO:     2024-10-05 09:23:50+0000 Waiting for application shutdown.
+INFO:     2024-10-05 09:23:50+0000 Application shutdown complete.
+INFO:     2024-10-05 09:23:50+0000 Finished server process [194]
+INFO:     2024-10-05 09:23:51+0000 Started server process [201]
+INFO:     2024-10-05 09:23:51+0000 Waiting for application startup.
+INFO:     2024-10-05 09:23:51+0000 Application startup complete.
+WARNING:  2024-10-05 09:30:27+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 09:30:27+0000 Shutting down
+INFO:     2024-10-05 09:30:27+0000 Waiting for application shutdown.
+INFO:     2024-10-05 09:30:27+0000 Application shutdown complete.
+INFO:     2024-10-05 09:30:27+0000 Finished server process [201]
+INFO:     2024-10-05 09:30:28+0000 Started server process [226]
+INFO:     2024-10-05 09:30:28+0000 Waiting for application startup.
+INFO:     2024-10-05 09:30:29+0000 Application startup complete.
+WARNING:  2024-10-05 09:34:45+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 09:34:45+0000 Shutting down
+INFO:     2024-10-05 09:34:45+0000 Waiting for application shutdown.
+INFO:     2024-10-05 09:34:45+0000 Application shutdown complete.
+INFO:     2024-10-05 09:34:45+0000 Finished server process [226]
+INFO:     2024-10-05 09:34:46+0000 Started server process [251]
+INFO:     2024-10-05 09:34:46+0000 Waiting for application startup.
+INFO:     2024-10-05 09:34:46+0000 Application startup complete.
+WARNING:  2024-10-05 09:35:10+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 09:35:10+0000 Shutting down
+INFO:     2024-10-05 09:35:10+0000 Waiting for application shutdown.
+INFO:     2024-10-05 09:35:10+0000 Application shutdown complete.
+INFO:     2024-10-05 09:35:10+0000 Finished server process [251]
+INFO:     2024-10-05 09:35:11+0000 Started server process [267]
+INFO:     2024-10-05 09:35:11+0000 Waiting for application startup.
+INFO:     2024-10-05 09:35:12+0000 Application startup complete.
+WARNING:  2024-10-05 09:36:30+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 09:36:30+0000 Shutting down
+INFO:     2024-10-05 09:36:30+0000 Waiting for application shutdown.
+INFO:     2024-10-05 09:36:30+0000 Application shutdown complete.
+INFO:     2024-10-05 09:36:30+0000 Finished server process [267]
+INFO:     2024-10-05 09:36:31+0000 Started server process [283]
+INFO:     2024-10-05 09:36:31+0000 Waiting for application startup.
+INFO:     2024-10-05 09:36:31+0000 Application startup complete.
+WARNING:  2024-10-05 09:47:57+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 09:47:57+0000 Shutting down
+INFO:     2024-10-05 09:47:57+0000 Waiting for application shutdown.
+INFO:     2024-10-05 09:47:57+0000 Application shutdown complete.
+INFO:     2024-10-05 09:47:57+0000 Finished server process [283]
+INFO:     2024-10-05 09:47:58+0000 Started server process [299]
+INFO:     2024-10-05 09:47:58+0000 Waiting for application startup.
+INFO:     2024-10-05 09:47:58+0000 Application startup complete.
+WARNING:  2024-10-05 09:48:26+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 09:48:26+0000 Shutting down
+INFO:     2024-10-05 09:48:26+0000 Waiting for application shutdown.
+INFO:     2024-10-05 09:48:26+0000 Application shutdown complete.
+INFO:     2024-10-05 09:48:26+0000 Finished server process [299]
+INFO:     2024-10-05 09:48:27+0000 Started server process [333]
+INFO:     2024-10-05 09:48:27+0000 Waiting for application startup.
+INFO:     2024-10-05 09:48:27+0000 Application startup complete.
+WARNING:  2024-10-05 09:52:06+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 09:52:06+0000 Shutting down
+INFO:     2024-10-05 09:52:06+0000 Waiting for application shutdown.
+INFO:     2024-10-05 09:52:06+0000 Application shutdown complete.
+INFO:     2024-10-05 09:52:06+0000 Finished server process [333]
+INFO:     2024-10-05 09:52:08+0000 Started server process [340]
+INFO:     2024-10-05 09:52:08+0000 Waiting for application startup.
+INFO:     2024-10-05 09:52:08+0000 Application startup complete.
+WARNING:  2024-10-05 09:52:19+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 09:52:20+0000 Shutting down
+INFO:     2024-10-05 09:52:20+0000 Waiting for application shutdown.
+INFO:     2024-10-05 09:52:20+0000 Application shutdown complete.
+INFO:     2024-10-05 09:52:20+0000 Finished server process [340]
+INFO:     2024-10-05 09:52:21+0000 Started server process [347]
+INFO:     2024-10-05 09:52:21+0000 Waiting for application startup.
+INFO:     2024-10-05 09:52:21+0000 Application startup complete.
+WARNING:  2024-10-05 09:54:00+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 09:54:00+0000 Shutting down
+INFO:     2024-10-05 09:54:00+0000 Waiting for application shutdown.
+INFO:     2024-10-05 09:54:00+0000 Application shutdown complete.
+INFO:     2024-10-05 09:54:00+0000 Finished server process [347]
+INFO:     2024-10-05 09:54:01+0000 Started server process [354]
+INFO:     2024-10-05 09:54:01+0000 Waiting for application startup.
+INFO:     2024-10-05 09:54:01+0000 Application startup complete.
+WARNING:  2024-10-05 09:54:44+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 09:54:44+0000 Shutting down
+INFO:     2024-10-05 09:54:45+0000 Waiting for application shutdown.
+INFO:     2024-10-05 09:54:45+0000 Application shutdown complete.
+INFO:     2024-10-05 09:54:45+0000 Finished server process [354]
+INFO:     2024-10-05 09:54:45+0000 Started server process [361]
+INFO:     2024-10-05 09:54:45+0000 Waiting for application startup.
+INFO:     2024-10-05 09:54:45+0000 Application startup complete.
+WARNING:  2024-10-05 09:54:47+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 09:54:47+0000 Shutting down
+INFO:     2024-10-05 09:54:47+0000 Waiting for application shutdown.
+INFO:     2024-10-05 09:54:47+0000 Application shutdown complete.
+INFO:     2024-10-05 09:54:47+0000 Finished server process [361]
+INFO:     2024-10-05 09:54:48+0000 Started server process [368]
+INFO:     2024-10-05 09:54:48+0000 Waiting for application startup.
+INFO:     2024-10-05 09:54:48+0000 Application startup complete.
+WARNING:  2024-10-05 09:55:13+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 09:55:13+0000 Shutting down
+INFO:     2024-10-05 09:55:13+0000 Waiting for application shutdown.
+INFO:     2024-10-05 09:55:13+0000 Application shutdown complete.
+INFO:     2024-10-05 09:55:13+0000 Finished server process [368]
+INFO:     2024-10-05 09:55:14+0000 Started server process [385]
+INFO:     2024-10-05 09:55:14+0000 Waiting for application startup.
+INFO:     2024-10-05 09:55:15+0000 Application startup complete.
+WARNING:  2024-10-05 09:55:46+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 09:55:46+0000 Shutting down
+INFO:     2024-10-05 09:55:46+0000 Waiting for application shutdown.
+INFO:     2024-10-05 09:55:46+0000 Application shutdown complete.
+INFO:     2024-10-05 09:55:46+0000 Finished server process [385]
+INFO:     2024-10-05 09:55:47+0000 Started server process [428]
+INFO:     2024-10-05 09:55:47+0000 Waiting for application startup.
+INFO:     2024-10-05 09:55:47+0000 Application startup complete.
+WARNING:  2024-10-05 10:02:46+0000 WatchFiles detected changes in 'src/tests/functional/src/test_film.py'. Reloading...
+INFO:     2024-10-05 10:02:46+0000 Shutting down
+INFO:     2024-10-05 10:02:46+0000 Waiting for application shutdown.
+INFO:     2024-10-05 10:02:46+0000 Application shutdown complete.
+INFO:     2024-10-05 10:02:46+0000 Finished server process [428]

@@ -1,0 +1,55 @@
+services:
+  async_api_backend_for_test:
+    container_name: async_api_backend_for_test
+    build:
+      context: ../../../.
+    image: async_api_backend_for_test
+    env_file:
+      - ../../../.env
+    volumes:
+      - ../../../.:/opt/app
+    ports:
+      - 8000:8000
+    networks:
+      - appnet
+
+  async_api_backend_tests:
+    container_name: async_api_backend_tests
+    image: async_api_backend_for_test
+    env_file:
+      - ../../../.env
+    networks:
+      - appnet
+    depends_on:
+      - async_api_backend_for_test
+      - redis
+      - elasticsearch
+    entrypoint:
+      bash -c "pip install -r ./src/tests/functional/requirements.txt
+      && python3 -m src.tests.functional.utils.wait_for_es
+      && python3 -m src.tests.functional.utils.wait_for_redis
+      && pytest -vv ./src/tests/functional/src"
+
+  redis:
+    container_name: redis-for-test
+    image: redis:latest
+    ports:
+      - 6379:6379
+    networks:
+      - appnet
+
+  elasticsearch:
+    container_name: elasticsearch-for-test
+    image: elasticsearch:8.6.2
+    env_file:
+      - ../../../.env
+    ports:
+      - 9200:9200
+    networks:
+      - appnet
+    depends_on:
+      - redis
+
+
+networks:
+  appnet:
